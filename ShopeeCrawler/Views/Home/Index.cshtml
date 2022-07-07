@@ -1,0 +1,50 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
+
+<script>
+   
+    function GetData()
+    {
+        //var myData = [
+        //    {
+        //        'id': '0',
+        //        'name': 'Item 0',
+        //        'price': '$0'
+        //    }
+        //]
+        //$('#table').bootstrapTable({ data: myData });
+        $.ajax(
+            {
+                type: 'GET',
+                dataType: 'json',
+                url: '/HOME/GetData',
+                success: function (gotData, status, xhr) {
+                    $('#table').bootstrapTable({ data: gotData });
+                }
+            });
+        
+    }
+
+    $(function ()
+    {
+        GetData();
+    });
+</script>
+<div></div>
+<div id="p1" style="margin-top:10%;">Data</div>
+<table id="table">
+    <thead>
+        <tr>
+            <th data-field="StockNo">StockNo</th>
+            <th data-field="StockName">StockName</th>
+            <th data-field="ClosePrice">ClosePrice</th>
+        </tr>
+    </thead>
+</table>
+
